@@ -329,16 +329,6 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
-<<<<<<< HEAD
- * ****COMPLETAR***** documentación de la intefaz
- */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
-{
-
-    
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
-=======
  * determina la cantidad de puntos que se ganan al terminar una partida
  * @param string $palabra
  * @param int $inten
