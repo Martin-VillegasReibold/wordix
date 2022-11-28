@@ -89,8 +89,24 @@ function agregerPalabra ($coleccionPalabrass, $palabra) {
 //print_r($partida);
 //imprimirResultado($partida);
 
-
-
+$coleccionPalabras = [
+    "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+    "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+    "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+    "NARIZ", "OPACO", "TIGRE", "DARDO", "GAFAS"
+];
+$coleccionPartidas = [ 
+    ["palabraWordix "=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0], 
+    ["palabraWordix "=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix "=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10], 
+    ["palabraWordix "=> "TINTO" , "jugador" => "martin", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix "=> "VERDE" , "jugador" => "martin", "intentos"=> 6, "puntaje" => 0], 
+    ["palabraWordix "=> "PIANO" , "jugador" => "juan", "intentos"=> 1, "puntaje" => 15],
+    ["palabraWordix "=> "TIGRE" , "jugador" => "sonia", "intentos"=> 4, "puntaje" => 13], 
+    ["palabraWordix "=> "YUYOS" , "jugador" => "gaston", "intentos"=> 2, "puntaje" => 16], 
+    ["palabraWordix "=> "NARIZ" , "jugador" => "folk11", "intentos"=> 6, "puntaje" => 12],
+    ["palabraWordix "=> "YUYOS" , "jugador" => "sonia", "intentos"=> 1, "puntaje" => 17]
+    ];
 
 do {
     echo "1) Jugar al Wordix con una palabra elegida\n
@@ -110,33 +126,11 @@ do {
             $nom=trim(fgets(STDIN));
             echo "ingrese el numero de la palabra que quiera jugar";
             $num=trim(fgets(STDIN));
-            foreach($coleccionPartida as $p){
-                foreach($coleccionPartida[$p] as $nombre){
-                    if ($nom==$nombre){
-                        if($coleccionPartida[$p]["palabraWordix"]==$coleccionPalabras[$num]){
-                            echo "error, palabra ya jugada \n ingrese el numero de la palabra que quiera jugar";
-                            $num=trim(fgets(STDIN));
-                        }
-                    }
-                }
-            
-            }
-            $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num],$nom);
-
-/*
-$coleccionPalabras = cargarColeccionPalabras();
-$coleccionPartida = cargarPartidas();
-
-echo "ingrese el nombre de usuario";
-$nom=trim(fgets(STDIN));
-echo "ingrese el numero de la palabra que quiera jugar";
-$num=trim(fgets(STDIN));
-
-
-            foreach($coleccionPartida as $p){
-
-                    if ($nom == $coleccionPartida[$p]["jugador"]){
-                        if($coleccionPartida[$p]["palabraWordix"]==$coleccionPalabras[$num]){
+            foreach($coleccionPartidas as $p=>$elemento){
+                echo "a";
+                    if ($nom==$coleccionPartidas[$p]["jugador"]){
+                        
+                        if($coleccionPartidas[$p]["palabraWordix"]==$coleccionPalabras[$num]){
                             echo "error, palabra ya jugada \n ingrese el numero de la palabra que quiera jugar";
                             $num=trim(fgets(STDIN));
                         }
@@ -144,11 +138,9 @@ $num=trim(fgets(STDIN));
                 
             
             }
+            $coleccionPartidas[count($coleccionPartidas)]= jugarWordix($coleccionPalabras[$num],$nom);
 
 
-$coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num],$nom);
-  
- */
 
 
             break;
@@ -156,14 +148,14 @@ $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num
             echo "ingrese el nombre de usuario";
             $nom=trim(fgets(STDIN));
             $num=random_int(0,count($coleccionPalabras));
-            foreach($coleccionPartida as $p){
-                foreach($coleccionPartida[$p] as $nombre){
-                    if ($nom==$nombre){
+            foreach($coleccionPartida as $p=>$elemento){
+                
+                    if ($nom==$coleccionPartidas[$p]["jugador"]){
                         if($coleccionPartida[$p]["palabraWordix"]==$coleccionPalabras[$num]){
                             $num=random_int(0,count($coleccionPalabras));
                         }
                     }
-                }
+                
             
             }
             $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num],$nom);
@@ -208,7 +200,7 @@ $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num
                 $cantPun=0;
                 echo "ingrese el nombre del jugador";
                 $nom=trim(fgets(STDIN));
-                foreach($coleccionPartida as $nroPartida){
+                foreach($coleccionPartida as $nroPartida=>$elemento){
                     if($coleccionPartida[$nroPartida]["jugador"]==$nom){
                         $cantPar++;
                         if($coleccionPartida[$nroPartida]["intentos"]!=0){
