@@ -51,28 +51,31 @@ function agregerPalabra ($coleccionPalabrass, $palabra) {
  * completar...
  * @return array
  */
- function cargarPartidas ($numPartEjem){
+ function cargarPartidas (){
 
     $coleccionPartidas = [ 
-    ["palabraWordix "=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0], 
-    ["palabraWordix "=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14], 
-    ["palabraWordix "=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10], 
-    ["palabraWordix "=> "TINTO" , "jugador" => "martin", "intentos"=> 3, "puntaje" => 14], 
-    ["palabraWordix "=> "VERDE" , "jugador" => "martin", "intentos"=> 6, "puntaje" => 0], 
-    ["palabraWordix "=> "PIANO" , "jugador" => "juan", "intentos"=> 1, "puntaje" => 15],
-    ["palabraWordix "=> "TIGRE" , "jugador" => "sonia", "intentos"=> 4, "puntaje" => 13], 
-    ["palabraWordix "=> "YUYOS" , "jugador" => "gaston", "intentos"=> 2, "puntaje" => 16], 
-    ["palabraWordix "=> "NARIZ" , "jugador" => "folk11", "intentos"=> 6, "puntaje" => 12],
-    ["palabraWordix "=> "YUYOS" , "jugador" => "sonia", "intentos"=> 1, "puntaje" => 17]
+    ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0], 
+    ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10], 
+    ["palabraWordix"=> "TINTO" , "jugador" => "martin", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix"=> "VERDE" , "jugador" => "martin", "intentos"=> 6, "puntaje" => 0], 
+    ["palabraWordix"=> "PIANO" , "jugador" => "juan", "intentos"=> 1, "puntaje" => 15],
+    ["palabraWordix"=> "TIGRE" , "jugador" => "sonia", "intentos"=> 4, "puntaje" => 13], 
+    ["palabraWordix"=> "YUYOS" , "jugador" => "gaston", "intentos"=> 2, "puntaje" => 16], 
+    ["palabraWordix"=> "NARIZ" , "jugador" => "folk11", "intentos"=> 6, "puntaje" => 12],
+    ["palabraWordix"=> "YUYOS" , "jugador" => "sonia", "intentos"=> 1, "puntaje" => 17]
     ];
 
-    return ($coleccionPartidas[$numPartEjem]);
+    return ($coleccionPartidas);
 }
 
 
-function compJugador ($a, $b) {
+function compJugadorPalabra ($a, $b) {
     if (($a["jugador"] == $b["jugador"]) ){
-        $orden = 0;
+        if(($a["palabraWordix"] < $b["palabraWordix"])){
+            $orden = -1;
+        }else{
+            $orden = 1;}
     }elseif(($a["jugador"] < $b["jugador"])){
         $orden = -1;
     }else{
@@ -80,15 +83,6 @@ function compJugador ($a, $b) {
 return $orden;
 }
 
-function compPalabra ($a, $b) {
-    if (($a["palabraWordix"] == $b["palabraWordix"]) ){
-        $orden = 0;
-    }elseif(($a["palabraWordix"] < $b["palabraWordix"])){
-        $orden = -1;
-    }else{
-        $orden = 1;}
-return $orden;
-}
 
 /* ... COMPLETAR ... */
 
@@ -110,8 +104,24 @@ return $orden;
 //print_r($partida);
 //imprimirResultado($partida);
 
-
-
+$coleccionPartidas = [ 
+    ["palabraWordix"=> "QUESO" , "jugador" => "majo", "intentos"=> 0, "puntaje" => 0], 
+    ["palabraWordix"=> "CASAS" , "jugador" => "rudolf", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix"=> "QUESO" , "jugador" => "pink2000", "intentos"=> 6, "puntaje" => 10], 
+    ["palabraWordix"=> "TINTO" , "jugador" => "martin", "intentos"=> 3, "puntaje" => 14], 
+    ["palabraWordix"=> "VERDE" , "jugador" => "martin", "intentos"=> 6, "puntaje" => 0], 
+    ["palabraWordix"=> "PIANO" , "jugador" => "juan", "intentos"=> 1, "puntaje" => 15],
+    ["palabraWordix"=> "TIGRE" , "jugador" => "sonia", "intentos"=> 4, "puntaje" => 13], 
+    ["palabraWordix"=> "YUYOS" , "jugador" => "gaston", "intentos"=> 2, "puntaje" => 16], 
+    ["palabraWordix"=> "NARIZ" , "jugador" => "folk11", "intentos"=> 6, "puntaje" => 12],
+    ["palabraWordix"=> "YUYOS" , "jugador" => "sonia", "intentos"=> 1, "puntaje" => 17]
+    ];
+    $coleccionPalabras = [
+        "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
+        "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
+        "VERDE", "MELON", "YUYOS", "PIANO", "PISOS",
+        "NARIZ", "OPACO", "TIGRE", "DARDO", "GAFAS"
+    ];
 
 do {
     echo "1) Jugar al Wordix con una palabra elegida\n
@@ -122,6 +132,7 @@ do {
         6) Mostrar listado de partidas ordenadas por jugador y por palabra\n
         7) Agregar una palabra de 5 letras a Wordix\n
         8) Salir\n";
+        echo "ingrese un numero entre el 1 y el 8";
     $opcion = solicitarNumeroEntre(1,8);
 
     
@@ -129,68 +140,73 @@ do {
         case 1:
             echo "ingrese el nombre de usuario";
             $nom=trim(fgets(STDIN));
-            echo "ingrese el numero de la palabra que quiera jugar";
-            $num=trim(fgets(STDIN));
-            foreach($coleccionPartida as $p){
-                foreach($coleccionPartida[$p] as $nombre){
-                    if ($nom==$nombre){
-                        if($coleccionPartida[$p]["palabraWordix"]==$coleccionPalabras[$num]){
-                            echo "error, palabra ya jugada \n ingrese el numero de la palabra que quiera jugar";
-                            $num=trim(fgets(STDIN));
+            echo "ingrese un numero entre el 0 y el " . count($coleccionPalabras)-1;
+            $num=solicitarNumeroEntre(0,count($coleccionPalabras)-1);
+            foreach($coleccionPartidas as $p=>$elemento){
+               
+                    if ($nom==$coleccionPartidas[$p]["jugador"]){
+                        if($coleccionPartidas[$p]["palabraWordix"]==$coleccionPalabras[$num]){
+                            echo "error, palabra ya jugada \n" ;
+                            echo "ingrese un numero entre el 0 y el " . count($coleccionPalabras)-1;
+                            $num=solicitarNumeroEntre(0,count($coleccionPalabras)-1);
                         }
                     }
-                }
+                
             
             }
-            $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num],$nom);
+            $coleccionPartidas[count($coleccionPartidas)]= jugarWordix($coleccionPalabras[$num],$nom);
             break;
         case 2:
             echo "ingrese el nombre de usuario";
             $nom=trim(fgets(STDIN));
             $num=random_int(0,count($coleccionPalabras));
-            foreach($coleccionPartida as $p){
-                foreach($coleccionPartida[$p] as $nombre){
-                    if ($nom==$nombre){
-                        if($coleccionPartida[$p]["palabraWordix"]==$coleccionPalabras[$num]){
+            foreach($coleccionPartidas as $p=>$elemento){
+                
+                    if ($nom==$coleccionPartidas[$p]["jugador"]){
+                        if($coleccionPartidas[$p]["palabraWordix"]==$coleccionPalabras[$num]){
                             $num=random_int(0,count($coleccionPalabras));
                         }
                     }
-                }
+                
             
             }
-            $coleccionPartida[count($coleccionPartida)]= jugarWordix($coleccionPalabras[$num],$nom);
+            $coleccionPartidas[count($coleccionPartidas)]= jugarWordix($coleccionPalabras[$num],$nom);
             break;
         case 3:
             do{
             echo "ingrese el numero de la partida";
             $nro=trim(fgets(STDIN));
-            }while($nro<1 || $nro>count($coleccionPartida));
-            echo "partida Wordix ".$nro.":palabra ".$coleccionPartida[$nro -1]["palabraWordix"]."\n
-            jugador: ".$coleccionPartida[$nro -1]["jugador"]."\n
-            puntaje: ".$coleccionPartida[$nro -1]["puntaje"]." puntos \n";
-            if($coleccionPartida[$nro -1]["intentos"]==0){
+            }while($nro<1 || $nro>count($coleccionPartidas));
+            echo "partida Wordix ".$nro.":palabra ".$coleccionPartidas[$nro -1]["palabraWordix"]."\n
+            jugador: ".$coleccionPartidas[$nro -1]["jugador"]."\n
+            puntaje: ".$coleccionPartidas[$nro -1]["puntaje"]." puntos \n";
+            if($coleccionPartidas[$nro -1]["intentos"]==0){
                 echo "intentos: no adivino la palabra";
             }else{
-                echo "adivino la palabra en ".$coleccionPartida[$nro -1]["intentos"]."intentos";
+                echo "adivino la palabra en ".$coleccionPartidas[$nro -1]["intentos"]."intentos";
             }
             
             break;
         case 4:
             $jugadorEstado=" ";
             $yaGano=false;
+            $i=0;
+            $bandera=true;
+            $bandera2=false;
+            
             echo "ingrese el nombre del jugador";
             $nom=trim(fgets(STDIN));
-            foreach($coleccionPartida as $nroPartida){
-                if($coleccionPartida[$nroPartida]["jugador"]!=$nom){
-                    $jugadorEstado="no existe";
-                }else{
-                    if ($coleccionPartida[$nroPartida]["intentos"] == 0 && !$yaGano){
-                        $jugadorEstado="el jugador ". $nom."no gano ninguna partida";
-                    }else{
-                        $jugadorEstado="el jugador adivino la palabra en ". $coleccionPartida[$nroPartida]["intentos"]."intentos";
-                        $yaGano=true;
+            while($bandera&&$i<count($coleccionPartidas)){
+                $jugadorEstado="no existe";
+                if($coleccionPartidas[$i]["jugador"]==$nom||$bandera2){
+                    $jugadorEstado="no gano";
+                    $bandera2=true;
+                    if($coleccionPartidas[$i]["puntaje"]!=0&&$coleccionPartidas[$i]["jugador"]==$nom){
+                        $bandera=false;
+                        $jugadorEstado="gano en el intento ". $coleccionPartidas[$i]["intentos"]. "con ". $coleccionPartidas[$i]["puntaje"]."puntos\n";
                     }
                 }
+                $i++;
             }
             echo $jugadorEstado;
             break;
@@ -198,29 +214,63 @@ do {
                 $cantPar=0;
                 $cantV=0;
                 $cantPun=0;
+                $cant1=0;
+                $cant2=0;
+                $cant3=0;
+                $cant4=0;
+                $cant5=0;
+                $cant6=0;
+                
                 echo "ingrese el nombre del jugador";
                 $nom=trim(fgets(STDIN));
-                foreach($coleccionPartida as $nroPartida){
-                    if($coleccionPartida[$nroPartida]["jugador"]==$nom){
+                foreach($coleccionPartidas as $nroPartida=>$elemento){
+                    if($coleccionPartidas[$nroPartida]["jugador"]==$nom){
                         $cantPar++;
-                        if($coleccionPartida[$nroPartida]["intentos"]!=0){
+                        if($coleccionPartidas[$nroPartida]["puntaje"]!=0){
                             $cantV++;
-                            $cantPun=$cantpun + $coleccionPartida[$nroPartida]["puntaje"];
+                            $cantPun=$cantPun + $coleccionPartidas[$nroPartida]["puntaje"];
                         }
-                    }//intentos del 1 al 6
-                }if($cantPar!=0){
-                echo "jugador: ". $nom."\n Partidas : " . $cantPar." \n puntaje total" . $cantPun . "\n Porsentaje de victorias : " . ($cantV/$cantPar)*100 ."\n adivinadas ";//faltan las adivinadas
-                }
-            case 6:
+                        switch($coleccionPartidas[$nroPartida]["intentos"]){
+                            case 1:
+                                $cant1++;
+                                break;
+                                case 2:
+                                    $cant2++;
+                                    break;
+                                    case 3:
+                                        $cant3++;
+                                        break;
+                                        case 4:
+                                            $cant4++;
+                                            break;
+                                            case 5:
+                                                $cant5++;
+                                                break;
+                                                case 6:
+                                                    if ($coleccionPartidas[$nroPartida]["puntaje"]!=0){
 
-                uasort($coleccionPartida, "compJugador");
-                uasort($coleccionPartida, "compPalabra");
-                print_r($coleccionPartida);
+                                                        $cant6++;
+                                                    }
+                                                    break;
+                        }
+                    }
+                }if($cantPar!=0){
+                echo "jugador: ". $nom."\n Partidas : " . $cantPar." \n puntaje total" . $cantPun . "\n Porsentaje de victorias : " . ($cantV/$cantPar)*100 .
+                "\n intento 1 ". $cant1. "\n intento 2". $cant2 ."\n intento 3 ". $cant3. "\n intento 4". $cant4."\n intento 5 ". $cant5. "\n intento 6". $cant6 ;//faltan las adivinadas
+                }
+                break;
+            case 6:
+                
+
+                uasort($coleccionPartidas, "compJugadorPalabra");
+                print_r($coleccionPartidas);
+                break;
 
             case 7:
                 echo " ";
                 $palabras = leerPalabra5Letras();
-                agregerPalabra(CargarColeccionPalabras(), $palabras);
+                $coleccionPalabras=agregerPalabra($coleccionPalabras, $palabras);
+                break;
 
     }
 } while ($opcion != 8);
