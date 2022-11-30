@@ -138,7 +138,7 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * Comprueba si los caracteres ingresados son letras.
+ * Comprueba si los caracteres ingresados son letras del abecedario.
  * @param String $cadena
  * @return boolean
  */
@@ -393,7 +393,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     if ($ganoElIntento) {
         $nroIntento--;
         $puntaje = obtenerPuntajeWordix($palabraWordix,$nroIntento);
-        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
+        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . ", Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
