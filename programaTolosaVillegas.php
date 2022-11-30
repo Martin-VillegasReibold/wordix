@@ -8,7 +8,7 @@ include_once("wordix.php");
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 /* ... COMPLETAR ... */
 /*Villegas Reibold, Martin Esteban - FAI-3236 - TUDW - Martin-VillegasReibold */
-/*Tolosa julian - FAI-3182 - TUDW - Cocacota */
+/*Tolosa, julian - FAI-3182 - TUDW - Cocacota */
 
 
 
@@ -216,7 +216,7 @@ do {
                     $bandera2=true;
                     if($coleccionPartidas[$i]["puntaje"]!=0&&$coleccionPartidas[$i]["jugador"]==$nom){
                         $bandera=false;
-                        $jugadorEstado="gano en el intento ". $coleccionPartidas[$i]["intentos"]. "con ". $coleccionPartidas[$i]["puntaje"]."puntos\n";
+                        $jugadorEstado="gano en el intento ". $coleccionPartidas[$i]["intentos"]. " con ". $coleccionPartidas[$i]["puntaje"]." puntos\n";
                     }
                 }
                 $i++;
@@ -269,7 +269,7 @@ do {
                     }
                 }if($cantPar!=0){
                 echo "jugador: ". $nom."\n Partidas: " . $cantPar." \n puntaje total: " . $cantPun . "\n Victorias: ". $cantV ."\n Porcentaje de victorias : " . ($cantV/$cantPar)*100 .
-                "% \n intento 1: ". $cant1. "\n intento 2: ". $cant2 ."\n intento 3: ". $cant3. "\n intento 4: ". $cant4."\n intento 5: ". $cant5. "\n intento 6: ". $cant6 ;//faltan las adivinadas
+                "% \n intento 1: ". $cant1. "\n intento 2: ". $cant2 ."\n intento 3: ". $cant3. "\n intento 4: ". $cant4."\n intento 5: ". $cant5. "\n intento 6: ". $cant6 ;
                 }
                 break;
         case 6:
